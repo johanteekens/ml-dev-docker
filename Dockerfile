@@ -8,10 +8,16 @@ RUN apt-get update && \
     ffmpeg libavcodec-extra \
     epiphany jupyter-notebook \
     build-essential wget \
-    git \
+    git vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-            
+RUN pip install streamlit \
+    llama-index ipywidgets \
+    accelerate bitsandbytes \
+    doc2text pypdf \
+    HuggingFace Prompts \
+    docx2txt python-pptx \
+    Pillow pydub           
 
 
 COPY entrypoint.sh /usr/local/bin
