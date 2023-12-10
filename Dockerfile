@@ -17,8 +17,10 @@ RUN pip install streamlit \
     doc2text pypdf \
     HuggingFace Prompts \
     docx2txt python-pptx \
-    Pillow pydub           
-
+    Pillow pydub \
+    transformers  \
+    ipywidgets  
+RUN pip install --upgrade ipywidgets
 
 COPY entrypoint.sh /usr/local/bin
 RUN chmod 777 /usr/local/bin/entrypoint.sh
