@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+ ml-inference2:
+  image: ml-dev-docker-base:1 
+  restart: always
+  container_name: ml-inference2
+  hostname: ml-inference2
+  privileged: true
+  environment:
+   - TZ=Europe/Amsterdam
+  volumes:
+   - /root/development/ml-inference2:/share
+   - /root/.cache:/root/.cache
+  sysctls:
+  - net.ipv4.ip_unprivileged_port_start=0
+  user: root
+  deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            count: 2
+            capabilities: [gpu]
+  networks:
+    ipvlan1:
+        ipv4_address: 192.168.1.188
+  stop_grace_period: 5s
+  labels:
+   com.teekensonline.description: "Johan Jupyter and Cuda image"
+   com.teekensonline.company: "Johan"
+   com.teekensonline.component: "Jupyter Nvidia Cuda 12.2 "
+networks:
+  ipvlan1:
+    external: true
+
