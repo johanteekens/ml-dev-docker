@@ -19,7 +19,6 @@ RUN git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.g
     && pip install -e .[all]
 RUN pip install jupyter notebook ipywidgets 
 RUN pip install streamlit \
-    ipywidgets \
     llama-index \
     accelerate bitsandbytes \
     doc2text pypdf \
@@ -27,10 +26,8 @@ RUN pip install streamlit \
     docx2txt python-pptx \
     Pillow pydub \
     transformers  \
-    ipywidgets \
     psycopg2 asyncpg \ 
     pgvector
-RUN pip install --upgrade ipywidgets
 COPY entrypoint.sh /usr/local/bin
 RUN chmod 777 /usr/local/bin/entrypoint.sh
 USER root 
