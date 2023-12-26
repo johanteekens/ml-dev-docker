@@ -1,6 +1,7 @@
 
 I use this container for llama / AI development.  It includes everything for my daily use. llama-cpp-python is compiled from source because it would not work any oher way.
 
+```
 Based on: 
   nvidia/cuda:12.2.2-devel-ubuntu22.04
 Ubuntu Packages: 
@@ -34,3 +35,4 @@ PIP Packages
   psycopg2 
   asyncpg 
   pgvector
+```
