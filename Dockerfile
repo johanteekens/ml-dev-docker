@@ -17,6 +17,10 @@ RUN git clone --recurse-submodules https://github.com/abetlen/llama-cpp-python.g
     && cd llama-cpp-python \
     && make build.cuda \
     && pip install -e .[all]
+RUN pip install torch 
+RUN pip install flash-attn --no-build-isolation
+RUN pip install causal-conv1d
+RUN pip install pip install mamba-ssm
 RUN pip install jupyter notebook ipywidgets 
 RUN pip install streamlit \
     llama-index \
