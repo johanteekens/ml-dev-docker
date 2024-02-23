@@ -56,6 +56,8 @@ RUN git clone --recurse-submodules https://github.com/run-llama/llama_index.git 
     && pip install -e .[all] \
     &&  cd .. \
     && rm -rf llama_index
+RUN pip install llama-index-llms-huggingface llama-index-embeddings-huggingface llama-index-vector-stores-postgres llama-index-core llama-index-llms-openai llama-index-llms-replicate 
+RUN pip install git+https://github.com/openai/whisper.git
 RUN sed -i 's/view_support: bool = False/view_support: bool = True/g' /usr/local/lib/python3.10/dist-packages/llama_index/core/utilities/sql_wrapper.py
 RUN wget https://vscodeserverlauncher.blob.core.windows.net/builds/setup-scripts/setup.sh 
 RUN chmod u+x setup.sh \
