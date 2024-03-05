@@ -52,7 +52,7 @@ RUN pip install flash-attn --no-build-isolation
 RUN git clone --recurse-submodules https://github.com/run-llama/llama_index.git \
     && cd llama_index \
     && pip install -e .[all] 
-RUN pip install llama-index-llms-huggingface llama-index-embeddings-huggingface llama-index-vector-stores-postgres llama-index-core llama-index-llms-openai llama-index-llms-replicate llama_index.llms.llama_cpp
+RUN pip install llama-index-llms-huggingface llama-index-embeddings-huggingface llama-index-vector-stores-postgres llama-index-core llama-index-llms-openai llama-index-llms-replicate llama_index.llms.llama_cpp llama-index-llms-openai-like
 RUN pip install git+https://github.com/openai/whisper.git
 RUN sed -i 's/view_support: bool = False/view_support: bool = True/g' /usr/local/lib/python3.10/dist-packages/llama_index/core/utilities/sql_wrapper.py
 RUN wget https://vscodeserverlauncher.blob.core.windows.net/builds/setup-scripts/setup.sh 
