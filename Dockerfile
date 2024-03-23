@@ -12,8 +12,10 @@ RUN apt-get update && \
     postgresql-client libpq-dev \
     alien dpkg-dev debhelper \
     libaio1 libaio-dev \
-    curl \
-    && apt-get clean \
+    curl rsync 
+RUN curl -fsSL https://deb.nodesource.com/setup_21.x |  bash
+RUN apt-get install -y nodejs
+RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN wget https://download.oracle.com/otn_software/linux/instantclient/1922000/oracle-instantclient19.22-basic-19.22.0.0.0-1.x86_64.rpm \
     && wget https://download.oracle.com/otn_software/linux/instantclient/1922000/oracle-instantclient19.22-sqlplus-19.22.0.0.0-1.x86_64.rpm \
@@ -44,9 +46,10 @@ RUN pip install streamlit \
     psycopg2 asyncpg \ 
     pgvector cx_Oracle \
     peft datasets \
-    idna pyautogen \
+    idna \
     markdownify requests \
-    autogenstudio sentence_transformers
+    sentence_transformers \
+    pyautogen autogenstudio
 RUN pip install jupyter notebook ipywidgets packaging 
 RUN pip install flash-attn --no-build-isolation
 RUN git clone --recurse-submodules https://github.com/run-llama/llama_index.git \
@@ -55,9 +58,6 @@ RUN git clone --recurse-submodules https://github.com/run-llama/llama_index.git 
 RUN pip install llama-index-llms-huggingface llama-index-embeddings-huggingface llama-index-vector-stores-postgres llama-index-core llama-index-llms-openai llama-index-llms-replicate llama_index.llms.llama_cpp llama-index-llms-openai-like
 RUN pip install git+https://github.com/openai/whisper.git
 RUN sed -i 's/view_support: bool = False/view_support: bool = True/g' /usr/local/lib/python3.10/dist-packages/llama_index/core/utilities/sql_wrapper.py
-RUN wget https://vscodeserverlauncher.blob.core.windows.net/builds/setup-scripts/setup.sh 
-RUN chmod u+x setup.sh \
-    && ./setup.sh
 COPY entrypoint.sh /usr/local/bin
 RUN chmod 777 /usr/local/bin/entrypoint.sh
 USER root 
